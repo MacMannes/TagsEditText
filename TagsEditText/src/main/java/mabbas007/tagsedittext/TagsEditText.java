@@ -48,7 +48,7 @@ import mabbas007.tagsedittext.utils.ResourceUtils;
  * Needs a lot of work
  * BETA
  */
-public class TagsEditText extends AutoCompleteTextView {
+public class TagsEditText extends android.support.v7.widget.AppCompatAutoCompleteTextView {
 
     public static final String NEW_LINE = "\n";
 
@@ -133,12 +133,12 @@ public class TagsEditText extends AutoCompleteTextView {
         super(context, attrs, defStyleAttr);
         init(attrs, defStyleAttr, 0);
     }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public TagsEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(attrs, defStyleAttr, defStyleRes);
-    }
+//
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//    public TagsEditText(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+//        super(context, attrs, defStyleAttr, defStyleRes);
+//        init(attrs, defStyleAttr, defStyleRes);
+//    }
 
     @Override
     protected void onSelectionChanged(int selStart, int selEnd) {
@@ -432,6 +432,14 @@ public class TagsEditText extends AutoCompleteTextView {
                 }
             });
         }
+    }
+
+    public void updateTags() {
+        String txt = getText().toString();
+        if (!txt.endsWith(NEW_LINE)) {
+            txt += NEW_LINE;
+        }
+        buildTags(txt);
     }
 
     private void setTags() {
